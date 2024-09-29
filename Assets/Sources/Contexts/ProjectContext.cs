@@ -13,6 +13,8 @@ namespace Sources.Contexts
         private ProjectContext _projectContext;
         private DiContainer _container;
         
+        public DiContainer Container => _container;
+        
         private void Awake()
         {
             DontDestroyOnLoad(this);

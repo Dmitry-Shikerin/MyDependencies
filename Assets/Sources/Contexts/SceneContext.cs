@@ -18,16 +18,13 @@ namespace Sources.Contexts
         {
             _projectContext = FindObjectOfType<ProjectContext>() ?? 
                               Instantiate(Resources.Load<ProjectContext>("ProjectContext"));
-            _container = new DiContainer();
+            _container = new DiContainer(_projectContext.Container);
             
             foreach (MonoInstaller installer in _installers)
                 installer.InstallBindings(_container);
 
             foreach (MonoBehaviour injected in _injectedObjects)
-            {
                 _container.Inject(injected);
-                Debug.Log($"Inject {injected.GetType().Name}");
-            }
         }
     }
 }

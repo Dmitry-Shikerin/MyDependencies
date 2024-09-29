@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using Sources.Attributes;
+using Sources.Finders;
 using Sources.Lifetimes;
 using UnityEngine;
 
@@ -10,23 +9,25 @@ namespace Sources.Containers
 {
     public class DiContainer
     {
-        private readonly Dictionary<Type, DependencyInfo> _mapping = new();
-        private readonly Dictionary<Type, DependencyContainer> _dependencies = new();
+        public static readonly BindingFlags Flags = 
+            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+        
+        private readonly DiContainer _parentContainer;
+        private readonly MethodInfoFinder _methodInfoFinder = new();
+        private readonly ConstructorInfoFinder _constructorInfoFinder = new();
+        private readonly DependencyCollector _collector = new();
 
-        public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes)
+        public DiContainer(DiContainer parentContainer = null)
         {
-            foreach (Type type in interfacesTypes)
-            {
-                if (_mapping.ContainsKey(type))
-                    throw new Exception($"Type {type} already registered");
-
-                _mapping[type] = new DependencyInfo(implType, lifeTime);
-            }
+            _parentContainer = parentContainer;
         }
+
+        public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes) =>
+            _collector.Register(implType, lifeTime, interfacesTypes);
 
         public void Inject(MonoBehaviour injected)
         {
-            MethodInfo methodInfo = GetMethodInfo(injected.GetType());
+            MethodInfo methodInfo = _methodInfoFinder.Get(injected.GetType());
 
             if (methodInfo == null)
                 return;
@@ -42,32 +43,13 @@ namespace Sources.Containers
 
         public object GetDependency(Type type)
         {
-            if (_mapping.ContainsKey(type) == false)
-                throw new Exception($"Type {type.Name} not registered");
+            if (_collector.IsRegistered(type))
+                return _collector.GetDependency(type, CreateDependency);
 
-            if (_dependencies.TryGetValue(type, out DependencyContainer container))
-            {
-                if (_mapping[type].LifeTime == LifeTime.Single)
-                    return _dependencies[type].Dependency;
-                
-                object newDependency = CreateDependency(type);
-                container.Dependencies.Add(newDependency);
-                return newDependency;
-            }
+            if (_parentContainer != null)
+                return _parentContainer.GetDependency(type);
 
-            object dependency = CreateDependency(type);
-            _dependencies[type] = new DependencyContainer();
-
-            if (_mapping[type].LifeTime == LifeTime.Single)
-            {
-                _dependencies[type].Dependency = dependency;
-                
-                return dependency;
-            }
-            
-            _dependencies[type].Dependencies.Add(dependency);
-
-            return dependency;
+            throw new Exception($"Type {type.Name} not registered");
         }
 
         private object[] GetDependencies(Type[] types)
@@ -88,20 +70,17 @@ namespace Sources.Containers
 
         private object CreateDependency(Type type)
         {
-            ConstructorInfo constructor = GetConstructor(_mapping[type].Type);
+            Type implType = _collector.GetImplType(type);
+            ConstructorInfo constructor = _constructorInfoFinder.Get(implType);
 
             if (constructor == null)
-            {
-                Debug.Log(_mapping[type].Type);
-                return Activator.CreateInstance(_mapping[type].Type);
-            }
-            
+                return Activator.CreateInstance(implType);
+
             ParameterInfo[] parameters = constructor.GetParameters();
             Type[] dependenciesTypes = GetDependencyTypes(parameters);
             object[] dependencies = GetDependencies(dependenciesTypes);
-            object dependency = Activator.CreateInstance(_mapping[type].Type, dependencies);
 
-            return dependency;
+            return Activator.CreateInstance(implType, dependencies);
         }
 
         private Type[] GetDependencyTypes(ParameterInfo[] parameters)
@@ -112,45 +91,6 @@ namespace Sources.Containers
                 types.Add(parameter.ParameterType);
 
             return types.ToArray();
-        }
-
-        private ConstructorInfo GetConstructor(Type type)
-        {
-            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-            ConstructorInfo[] info = type.GetConstructors(flags);
-            Debug.Log($"type {type.Name} length {info.Length}");
-
-            if (info.Length > 1)
-                throw new IndexOutOfRangeException(type.Name);
-            else if (info.Length == 1)
-                return info.First();
-
-            return null;
-        }
-
-        private MethodInfo GetMethodInfo(Type type)
-        {
-            List<MethodInfo> methods = new List<MethodInfo>();
-            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-            MethodInfo[] infos = type.GetMethods(flags);
-
-            foreach (MethodInfo info in infos)
-            {
-                foreach (Attribute attribute in info.GetCustomAttributes())
-                {
-                    if (attribute is InjectAttribute)
-                    {
-                        methods.Add(info);
-                    }
-                }
-            }
-
-            if (methods.Count > 1)
-                throw new ArgumentOutOfRangeException();
-            else if (methods.Count == 1)
-                return methods[0];
-
-            return null;
         }
     }
 }
