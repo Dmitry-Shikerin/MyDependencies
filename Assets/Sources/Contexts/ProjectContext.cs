@@ -1,18 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
+using Sources.Containers;
+using Sources.Installers;
 using UnityEngine;
 
-public class ProjectContext : MonoBehaviour
+namespace Sources.Contexts
 {
-    // Start is called before the first frame update
-    void Start()
+    [DefaultExecutionOrder(-10000)]
+    public class ProjectContext : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private List<MonoInstaller> _installers;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private ProjectContext _projectContext;
+        private DiContainer _container;
         
+        private void Awake()
+        {
+            _container = new DiContainer();
+            
+            foreach (MonoInstaller installer in _installers)
+                installer.InstallBindings(_container);
+        }
     }
 }
