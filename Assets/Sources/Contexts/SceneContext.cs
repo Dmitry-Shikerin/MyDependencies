@@ -17,7 +17,7 @@ namespace Sources.Contexts
         private void Awake()
         {
             _projectContext = FindObjectOfType<ProjectContext>() ?? 
-                              Resources.Load<ProjectContext>("ProjectContext");
+                              Instantiate(Resources.Load<ProjectContext>("ProjectContext"));
             _container = new DiContainer();
             
             foreach (MonoInstaller installer in _installers)
@@ -26,6 +26,7 @@ namespace Sources.Contexts
             foreach (MonoBehaviour injected in _injectedObjects)
             {
                 _container.Inject(injected);
+                Debug.Log($"Inject {injected.GetType().Name}");
             }
         }
     }

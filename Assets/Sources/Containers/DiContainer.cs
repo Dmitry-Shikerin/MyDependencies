@@ -17,10 +17,7 @@ namespace Sources.Containers
             {
                 if (_mapping.ContainsKey(type))
                     throw new Exception($"Type {type} already registered");
-
-                if (_mapping.ContainsValue(implType))
-                    throw new Exception($"Type {implType} already registered");
-
+                
                 _mapping[type] = implType;
             }
         }
@@ -108,7 +105,8 @@ namespace Sources.Containers
         private MethodInfo GetMethodInfo(Type type)
         {
             List<MethodInfo> methods = new List<MethodInfo>();
-            MethodInfo[] infos = type.GetMethods();
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            MethodInfo[] infos = type.GetMethods(flags);
 
             foreach (MethodInfo info in infos)
             {
@@ -121,9 +119,11 @@ namespace Sources.Containers
                 }
             }
 
+            Debug.Log(methods.Count);
+            
             if (methods.Count > 1)
                 throw new ArgumentOutOfRangeException();
-            else if (methods.Count == 0)
+            else if (methods.Count == 1)
                 return methods[0];
 
             return null;

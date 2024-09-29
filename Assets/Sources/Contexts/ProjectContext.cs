@@ -15,6 +15,8 @@ namespace Sources.Contexts
         
         private void Awake()
         {
+            DontDestroyOnLoad(this);
+            
             _container = new DiContainer();
             
             foreach (MonoInstaller installer in _installers)

@@ -4,30 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Attributes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Attributes/InjectAttribute.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Attributes/InjectAttribute.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Installers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Installers/MonoInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Installers/MonoInstaller.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/Bootstrapper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/Bootstrapper.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/ITestClass.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestClass.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestClass.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestInstaller.cs.meta" afterDir="false" />
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="add base logic">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sources/Contexts/ProjectContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Contexts/ProjectContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sources/Contexts/SceneContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Contexts/SceneContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Test/Bootstrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Test/Bootstrapper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +27,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -123,13 +108,23 @@
       <workItem from="1727615452471" duration="132000" />
       <workItem from="1727616019874" duration="1828000" />
       <workItem from="1727618863954" duration="894000" />
-      <workItem from="1727620052526" duration="2449000" />
+      <workItem from="1727620052526" duration="4640000" />
     </task>
+    <task id="LOCAL-00001" summary="add base logic">
+      <option name="closed" value="true" />
+      <created>1727622581946</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727622581946</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
@@ -139,5 +134,7 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="add base logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add base logic" />
   </component>
 </project>

@@ -12,7 +12,6 @@ namespace Sources.Test
         private void Construct(ITestClass testClass)
         {
             _testClass = testClass ?? throw new ArgumentNullException();
-            Debug.Log($"Construct {testClass.GetType().Name}");
         }
     }
 }
