@@ -4,22 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="add tests">
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DependencyCollector.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DependencyCollector.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/ConstructorInfoFinder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/ConstructorInfoFinder.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/MethodInfoFinder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/MethodInfoFinder.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestProjectInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestProjectInstaller.cs.meta" afterDir="false" />
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="refactoring">
+      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/FinderBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sources/Finders/FinderBase.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sources/Utils.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sources/Utils/ArrayExt.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sources/Utils/ArrayExt.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Contexts/ProjectContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Contexts/ProjectContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Contexts/SceneContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Contexts/SceneContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Test/TestInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Test/TestInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Finders/ConstructorInfoFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Finders/ConstructorInfoFinder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Finders/MethodInfoFinder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Finders/MethodInfoFinder.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +110,9 @@
       <workItem from="1727615452471" duration="132000" />
       <workItem from="1727616019874" duration="1828000" />
       <workItem from="1727618863954" duration="894000" />
-      <workItem from="1727620052526" duration="15234000" />
+      <workItem from="1727620052526" duration="16492000" />
+      <workItem from="1727638927832" duration="193000" />
+      <workItem from="1727639395153" duration="262000" />
     </task>
     <task id="LOCAL-00001" summary="add base logic">
       <option name="closed" value="true" />
@@ -151,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727629681541</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1727636585337</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727636585337</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +174,7 @@
     <MESSAGE value="create test" />
     <MESSAGE value="add lifetimes" />
     <MESSAGE value="add tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
 </project>
