@@ -1,6 +1,7 @@
 using Sources.Containers;
 using Sources.Containers.Extensions;
 using Sources.Installers;
+using Sources.Lifetimes;
 
 namespace Sources.Test
 {
@@ -8,7 +9,7 @@ namespace Sources.Test
     {
         public override void InstallBindings(DiContainer container)
         {
-            container.Bind<ITestClass, TestClass>();
+            container.Bind<ITestClass, TestClass>(LifeTime.Single);
         }
     }
 }

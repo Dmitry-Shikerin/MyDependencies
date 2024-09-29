@@ -2,23 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Sources.Attributes;
+using Sources.Lifetimes;
 using UnityEngine;
 
 namespace Sources.Containers
 {
     public class DiContainer
     {
-        private readonly Dictionary<Type, Type> _mapping = new();
-        private readonly Dictionary<Type, object> _dependencies = new();
+        private readonly Dictionary<Type, DependencyInfo> _mapping = new();
+        private readonly Dictionary<Type, DependencyContainer> _dependencies = new();
 
-        public void Register(Type implType, params Type[] interfacesTypes)
+        public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes)
         {
             foreach (Type type in interfacesTypes)
             {
                 if (_mapping.ContainsKey(type))
                     throw new Exception($"Type {type} already registered");
-                
-                _mapping[type] = implType;
+
+                _mapping[type] = new DependencyInfo(implType, lifeTime);
             }
         }
 
@@ -40,14 +41,30 @@ namespace Sources.Containers
 
         public object GetDependency(Type type)
         {
-            if (_dependencies.ContainsKey(type))
-                return _dependencies[type];
-
             if (_mapping.ContainsKey(type) == false)
                 throw new Exception($"Type {type.Name} not registered");
 
+            if (_dependencies.TryGetValue(type, out DependencyContainer container))
+            {
+                if (_mapping[type].LifeTime == LifeTime.Single)
+                    return _dependencies[type].Dependency;
+                
+                object newDependency = CreateDependency(type);
+                container.Dependencies.Add(newDependency);
+                return newDependency;
+            }
+
             object dependency = CreateDependency(type);
-            _dependencies[type] = dependency;
+            _dependencies[type] = new DependencyContainer();
+
+            if (_mapping[type].LifeTime == LifeTime.Single)
+            {
+                _dependencies[type].Dependency = dependency;
+                
+                return dependency;
+            }
+            
+            _dependencies[type].Dependencies.Add(dependency);
 
             return dependency;
         }
@@ -55,15 +72,15 @@ namespace Sources.Containers
         private object[] GetDependencies(Type[] types)
         {
             List<object> dependencies = new List<object>();
-            
+
             foreach (Type type in types)
             {
                 object dependency = GetDependency(type);
                 dependencies.Add(dependency);
             }
-            
+
             return dependencies.ToArray();
-        } 
+        }
 
         private T CreateDependency<T>() =>
             (T)CreateDependency(typeof(T));
@@ -73,9 +90,9 @@ namespace Sources.Containers
             ConstructorInfo constructor = GetConstructor(type);
 
             if (constructor == null)
-                return Activator.CreateInstance(_mapping[type]);
+                return Activator.CreateInstance(_mapping[type].Type);
 
-            object dependency = Activator.CreateInstance(_mapping[type]);
+            object dependency = Activator.CreateInstance(_mapping[type].Type);
 
             return dependency;
         }
@@ -83,10 +100,10 @@ namespace Sources.Containers
         private Type[] GetDependencyTypes(ParameterInfo[] parameters)
         {
             List<Type> types = new List<Type>();
-            
+
             foreach (ParameterInfo parameter in parameters)
                 types.Add(parameter.ParameterType);
-            
+
             return types.ToArray();
         }
 
@@ -119,8 +136,6 @@ namespace Sources.Containers
                 }
             }
 
-            Debug.Log(methods.Count);
-            
             if (methods.Count > 1)
                 throw new ArgumentOutOfRangeException();
             else if (methods.Count == 1)
