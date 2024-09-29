@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Sources.Attributes;
 using Sources.Lifetimes;
@@ -87,12 +88,18 @@ namespace Sources.Containers
 
         private object CreateDependency(Type type)
         {
-            ConstructorInfo constructor = GetConstructor(type);
+            ConstructorInfo constructor = GetConstructor(_mapping[type].Type);
 
             if (constructor == null)
+            {
+                Debug.Log(_mapping[type].Type);
                 return Activator.CreateInstance(_mapping[type].Type);
-
-            object dependency = Activator.CreateInstance(_mapping[type].Type);
+            }
+            
+            ParameterInfo[] parameters = constructor.GetParameters();
+            Type[] dependenciesTypes = GetDependencyTypes(parameters);
+            object[] dependencies = GetDependencies(dependenciesTypes);
+            object dependency = Activator.CreateInstance(_mapping[type].Type, dependencies);
 
             return dependency;
         }
@@ -109,14 +116,16 @@ namespace Sources.Containers
 
         private ConstructorInfo GetConstructor(Type type)
         {
-            ConstructorInfo[] info = type.GetConstructors();
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            ConstructorInfo[] info = type.GetConstructors(flags);
+            Debug.Log($"type {type.Name} length {info.Length}");
 
             if (info.Length > 1)
                 throw new IndexOutOfRangeException(type.Name);
-            else if (info.Length == 0)
-                return null;
+            else if (info.Length == 1)
+                return info.First();
 
-            return info[0];
+            return null;
         }
 
         private MethodInfo GetMethodInfo(Type type)
