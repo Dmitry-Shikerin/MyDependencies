@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="add extansion methods">
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="add extancions">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/DependencyCollector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DependencyCollector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/DiContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sources/Attributes/InjectAttribute.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Attributes/InjectAttribute.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Lifetimes/LifeTime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Lifetimes/LifeTime.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/Sources/Containers/DiContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -113,7 +112,7 @@
       <workItem from="1727639395153" duration="2422000" />
       <workItem from="1727675259416" duration="440000" />
       <workItem from="1728320814648" duration="2347000" />
-      <workItem from="1728323785393" duration="2003000" />
+      <workItem from="1728323785393" duration="3807000" />
     </task>
     <task id="LOCAL-00001" summary="add base logic">
       <option name="closed" value="true" />
@@ -179,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728323950405</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add extancions">
+      <option name="closed" value="true" />
+      <created>1728326299688</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728326299688</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +209,7 @@
     <MESSAGE value="refactoring" />
     <MESSAGE value="refactoring dependecyCollector" />
     <MESSAGE value="add extansion methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="add extansion methods" />
+    <MESSAGE value="add extancions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add extancions" />
   </component>
 </project>

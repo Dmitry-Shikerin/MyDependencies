@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Sources.Lifetimes;
 using UnityEngine;
 
@@ -17,6 +18,11 @@ namespace Sources.Containers.Extensions
         public static void BindInterfaces<TImpl>(this DiContainer container, LifeTime lifeTime)
             where TImpl : class =>
             container.Register(typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces());
+        
+        public static void BindInterfacesAndSelfTo<TImpl>(this DiContainer container, LifeTime lifeTime)
+            where TImpl : class =>
+            container.Register(
+                typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces().Append(typeof(TImpl)).ToArray());
         
         public static void Bind<TImpl>(this DiContainer container, TImpl instance)
             where TImpl : class =>

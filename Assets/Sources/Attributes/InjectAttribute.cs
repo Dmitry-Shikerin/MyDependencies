@@ -1,7 +1,10 @@
 using System;
+using JetBrains.Annotations;
 
 namespace Sources.Attributes
 {
+    [MeansImplicitUse(ImplicitUseKindFlags.Assign)]
+    [AttributeUsage(AttributeTargets.Method)]
     public class InjectAttribute : Attribute
     {
     }
