@@ -8,69 +8,73 @@ namespace Sources.Containers
     {
         private readonly Dictionary<Type, DependencyInfo> _mapping = new();
         private readonly Dictionary<Type, DependencyContainer> _dependencies = new();
+        private readonly Stack<Type> _registeredTypes = new();
+        private readonly Stack<Type> _implRegisteredTypes = new();
 
         public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes)
         {
+            if (_implRegisteredTypes.Contains(implType))
+                throw new Exception($"Type {implType} already registered");
+            
+            _implRegisteredTypes.Push(implType);
+            
             foreach (Type type in interfacesTypes)
             {
                 if (_mapping.ContainsKey(type))
                     throw new Exception($"Type {type} already registered");
 
+                if (_registeredTypes.Contains(type))
+                    throw new Exception($"Type {type} already registered");
+
                 _mapping[type] = new DependencyInfo(implType, lifeTime);
+                _registeredTypes.Push(type);
             }
         }
 
         public object GetDependency(Type type, Func<Type, object> createFunc)
         {
-            object dependency;
-            
-            if (TryGetDependency(type, out DependencyContainer container))
-            {
-                if (EqualsLifeTime(type, LifeTime.Single))
-                    return GetDependency(type);
+            if (_dependencies.TryGetValue(type, out DependencyContainer container))
+                return GetDependency(type, container, createFunc);
 
-                dependency = createFunc.Invoke(type);
-                container.Dependencies.Add(dependency);
-                
-                return dependency;
-            }
-
-            dependency = createFunc.Invoke(type);
+            object dependency = createFunc.Invoke(type);
             Add(type, dependency);
             
             return dependency;
         }
 
-        public void Add(Type type, object dependency)
+        private void Add(Type type, object dependency)
         {
             _dependencies[type] = new DependencyContainer();
-
-            if (_mapping[type].LifeTime == LifeTime.Single)
+            
+            Action action = _mapping[type].LifeTime switch
             {
-                _dependencies[type].Dependency = dependency;
-
-                return;
-            }
-
-            _dependencies[type].Dependencies.Add(dependency);
+                LifeTime.Single => () => _dependencies[type].Dependency = dependency,
+                LifeTime.Transient => () => _dependencies[type].Dependencies.Add(dependency),
+                _ => null
+            };
+            
+            action?.Invoke();
         }
-
-        public bool TryGetDependency(Type type, out DependencyContainer dependency) =>
-            _dependencies.TryGetValue(type, out dependency);
-
+        
         public Type GetImplType(Type keyType) =>
             _mapping[keyType].Type;
 
-        public object GetDependency(Type type) =>
-            _dependencies[type].Dependency;
+        private object GetDependency(Type type, DependencyContainer container, Func<Type, object> createFunc)
+        {
+            return _mapping[type].LifeTime switch
+            {
+                LifeTime.Single => _dependencies[type].Dependency,
+                LifeTime.Transient => (Func<object>)(() =>
+                {
+                    object dependency = createFunc.Invoke(type);
+                    container.Dependencies.Add(dependency);
+                    return dependency;
+                }),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
 
         public bool IsRegistered(Type type) =>
             _mapping.ContainsKey(type);
-        
-        public LifeTime GetLifeTime(Type type) =>
-            _mapping[type].LifeTime;
-        
-        public bool EqualsLifeTime(Type type, LifeTime lifeTime) =>
-            _mapping[type].LifeTime == lifeTime;
     }
 }
