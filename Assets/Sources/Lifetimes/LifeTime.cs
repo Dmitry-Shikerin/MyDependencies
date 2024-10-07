@@ -4,5 +4,6 @@ namespace Sources.Lifetimes
     {
         Single = 0,
         Transient = 1,
+        Scoped = 2,
     }
 }

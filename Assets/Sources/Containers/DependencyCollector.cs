@@ -13,23 +13,22 @@ namespace Sources.Containers
 
         public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes)
         {
-            if (_implRegisteredTypes.Contains(implType))
-                throw new Exception($"Type {implType} already registered");
-            
-            _implRegisteredTypes.Push(implType);
-            
-            foreach (Type type in interfacesTypes)
-            {
-                if (_mapping.ContainsKey(type))
-                    throw new Exception($"Type {type} already registered");
-
-                if (_registeredTypes.Contains(type))
-                    throw new Exception($"Type {type} already registered");
-
-                _mapping[type] = new DependencyInfo(implType, lifeTime);
-                _registeredTypes.Push(type);
-            }
+            AddImplRegistration(implType);
+            RegisterInterfaces(implType, lifeTime, interfacesTypes);
+        }        
+        
+        public void Register(object instance, LifeTime lifeTime, params Type[] interfacesTypes)
+        {
+            Type implType = instance.GetType();
+            AddImplRegistration(implType);
+            RegisterInterfaces(implType, lifeTime, interfacesTypes, Add, instance);
         }
+
+        public bool IsRegistered(Type type) =>
+            _mapping.ContainsKey(type);
+
+        public Type GetImplType(Type keyType) =>
+            _mapping[keyType].Type;
 
         public object GetDependency(Type type, Func<Type, object> createFunc)
         {
@@ -42,6 +41,36 @@ namespace Sources.Containers
             return dependency;
         }
 
+        private void RegisterInterfaces(
+            Type implType, 
+            LifeTime lifeTime, 
+            Type[] interfacesTypes, 
+            Action<Type, object> add = null, 
+            object instance = null)
+        {
+            foreach (Type type in interfacesTypes)
+            {
+                if (_mapping.ContainsKey(type))
+                    throw new Exception($"Type {type} already registered");
+
+                if (_registeredTypes.Contains(type))
+                    throw new Exception($"Type {type} already registered");
+
+                _mapping[type] = new DependencyInfo(implType, lifeTime);
+                _registeredTypes.Push(type);
+                //TODO обработать нулы
+                add?.Invoke(type, instance);
+            }
+        }
+
+        private void AddImplRegistration(Type implType)
+        {
+            if (_implRegisteredTypes.Contains(implType))
+                throw new Exception($"Type {implType} already registered");
+            
+            _implRegisteredTypes.Push(implType);
+        }
+
         private void Add(Type type, object dependency)
         {
             _dependencies[type] = new DependencyContainer();
@@ -50,14 +79,13 @@ namespace Sources.Containers
             {
                 LifeTime.Single => () => _dependencies[type].Dependency = dependency,
                 LifeTime.Transient => () => _dependencies[type].Dependencies.Add(dependency),
+                //TODO реализовать Scoped
+                LifeTime.Scoped => throw new NotImplementedException(),
                 _ => null
             };
             
             action?.Invoke();
         }
-        
-        public Type GetImplType(Type keyType) =>
-            _mapping[keyType].Type;
 
         private object GetDependency(Type type, DependencyContainer container, Func<Type, object> createFunc)
         {
@@ -73,8 +101,5 @@ namespace Sources.Containers
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-
-        public bool IsRegistered(Type type) =>
-            _mapping.ContainsKey(type);
     }
 }

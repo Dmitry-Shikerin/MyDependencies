@@ -24,6 +24,9 @@ namespace Sources.Containers
 
         public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes) =>
             _collector.Register(implType, lifeTime, interfacesTypes);
+        
+        public void Register(object instance, LifeTime lifeTime, params Type[] interfacesTypes) =>
+            _collector.Register(instance, lifeTime, interfacesTypes);
 
         public void Inject(MonoBehaviour injected)
         {
