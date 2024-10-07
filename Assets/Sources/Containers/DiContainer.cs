@@ -41,7 +41,7 @@ namespace Sources.Containers
         public T GetDependency<T>() =>
             (T)GetDependency(typeof(T));
 
-        public object GetDependency(Type type)
+        private object GetDependency(Type type)
         {
             if (_collector.IsRegistered(type))
                 return _collector.GetDependency(type, CreateDependency);
