@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="refactoring">
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DependencyCollector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DependencyCollector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DiContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DiContainer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +23,8 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/Sources/Containers/DiContainer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Sources/Containers/Extensions/DiContainerExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/08/8d7ac619/Func`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -112,7 +113,8 @@
       <workItem from="1728320814648" duration="2347000" />
       <workItem from="1728323785393" duration="4251000" />
       <workItem from="1728328148892" duration="2141000" />
-      <workItem from="1728375154579" duration="1045000" />
+      <workItem from="1728375154579" duration="2794000" />
+      <workItem from="1728402753828" duration="1446000" />
     </task>
     <task id="LOCAL-00001" summary="add base logic">
       <option name="closed" value="true" />
@@ -202,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728375259663</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add AsMDef">
+      <option name="closed" value="true" />
+      <created>1728376272993</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728376272993</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +237,7 @@
     <MESSAGE value="add extancions" />
     <MESSAGE value="change injectAttribute" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="add AsMDef" />
+    <option name="LAST_COMMIT_MESSAGE" value="add AsMDef" />
   </component>
 </project>

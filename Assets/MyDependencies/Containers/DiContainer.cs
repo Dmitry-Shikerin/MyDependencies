@@ -44,15 +44,15 @@ namespace MyDependencies.Containers
         public T GetDependency<T>() =>
             (T)GetDependency(typeof(T));
 
-        private object GetDependency(Type type)
+        private object GetDependency(Type interfaceType)
         {
-            if (_collector.IsRegistered(type))
-                return _collector.GetDependency(type, CreateDependency);
+            if (_collector.IsRegistered(interfaceType))
+                return _collector.GetDependency(interfaceType, CreateDependency);
 
             if (_parentContainer != null)
-                return _parentContainer.GetDependency(type);
+                return _parentContainer.GetDependency(interfaceType);
 
-            throw new Exception($"Type {type.Name} not registered");
+            throw new Exception($"Type {interfaceType.FullName} not registered");
         }
 
         private object[] GetDependencies(Type[] types)

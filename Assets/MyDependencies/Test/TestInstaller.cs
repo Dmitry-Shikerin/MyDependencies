@@ -12,7 +12,7 @@ namespace MyDependencies.Test
         {
             // container.Bind<ITestClass, TestClass>(LifeTime.Single);
             container.Bind<ITestClass<ITestClass>, TestClass<ITestClass>>(LifeTime.Single);
-            container.Bind<ITestClass<ITestClass<ITestClass>>, TestClass<ITestClass<ITestClass>>>(LifeTime.Single);
+            // container.Bind<ITestClass<ITestClass<ITestClass>>, TestClass<ITestClass<ITestClass>>>(LifeTime.Single);
         }
     }
 }

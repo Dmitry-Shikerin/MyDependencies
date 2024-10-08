@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MyDependencies.Lifetimes;
 
 namespace MyDependencies.Containers
@@ -10,6 +11,7 @@ namespace MyDependencies.Containers
         private readonly Dictionary<Type, DependencyContainer> _dependencies = new();
         private readonly Stack<Type> _registeredTypes = new();
         private readonly Stack<Type> _implRegisteredTypes = new();
+        private readonly Stack<object> _implSingleInstances = new();
 
         public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes)
         {
@@ -21,22 +23,37 @@ namespace MyDependencies.Containers
         {
             Type implType = instance.GetType();
             AddImplRegistration(implType);
-            RegisterInterfaces(implType, lifeTime, interfacesTypes, Add, instance);
+            RegisterInterfaces(implType, lifeTime, interfacesTypes, AddImpl, instance);
         }
 
-        public bool IsRegistered(Type type) =>
-            _mapping.ContainsKey(type);
+        public bool IsRegistered(Type interfaceType) =>
+            _mapping.ContainsKey(interfaceType);
 
         public Type GetImplType(Type keyType) =>
             _mapping[keyType].Type;
 
-        public object GetDependency(Type type, Func<Type, object> createFunc)
+        public object GetDependency(Type interfaceType, Func<Type, object> createFunc)
         {
-            if (_dependencies.TryGetValue(type, out DependencyContainer container))
-                return GetDependency(type, container, createFunc);
+            if (_dependencies.TryGetValue(interfaceType, out DependencyContainer container))
+                return GetDependency(interfaceType, container, createFunc);
 
-            object dependency = createFunc.Invoke(type);
-            Add(type, dependency);
+            Type implType = GetImplType(interfaceType);
+            object dependency;
+            
+            if (_implSingleInstances.Contains(implType))
+            {
+                dependency = _dependencies.Values
+                    .First(depend => depend.Dependency.GetType() == implType);
+                _dependencies[interfaceType] = new DependencyContainer
+                {
+                    Dependency = dependency,
+                };
+                
+                return dependency;
+            }
+            
+            dependency = createFunc.Invoke(interfaceType);
+            AddImpl(interfaceType, dependency);
             
             return dependency;
         }
@@ -71,13 +88,17 @@ namespace MyDependencies.Containers
             _implRegisteredTypes.Push(implType);
         }
 
-        private void Add(Type type, object dependency)
+        private void AddImpl(Type type, object dependency)
         {
             _dependencies[type] = new DependencyContainer();
             
             Action action = _mapping[type].LifeTime switch
             {
-                LifeTime.Single => () => _dependencies[type].Dependency = dependency,
+                LifeTime.Single => () =>
+                {
+                    _dependencies[type].Dependency = dependency;
+                    _implSingleInstances.Push(dependency);
+                },
                 LifeTime.Transient => () => _dependencies[type].Dependencies.Add(dependency),
                 //TODO реализовать Scoped
                 LifeTime.Scoped => throw new NotImplementedException(),
@@ -87,14 +108,14 @@ namespace MyDependencies.Containers
             action?.Invoke();
         }
 
-        private object GetDependency(Type type, DependencyContainer container, Func<Type, object> createFunc)
+        private object GetDependency(Type interfaceType, DependencyContainer container, Func<Type, object> createFunc)
         {
-            return _mapping[type].LifeTime switch
+            return _mapping[interfaceType].LifeTime switch
             {
-                LifeTime.Single => _dependencies[type].Dependency,
+                LifeTime.Single => _dependencies[interfaceType].Dependency,
                 LifeTime.Transient => (Func<object>)(() =>
                 {
-                    object dependency = createFunc.Invoke(type);
+                    object dependency = createFunc.Invoke(interfaceType);
                     container.Dependencies.Add(dependency);
                     return dependency;
                 }),
