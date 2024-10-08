@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="">
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sources/Test/Generic/TestClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sources/Test/Generic/TestClass.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +112,7 @@
       <workItem from="1728320814648" duration="2347000" />
       <workItem from="1728323785393" duration="4251000" />
       <workItem from="1728328148892" duration="2141000" />
+      <workItem from="1728375154579" duration="1045000" />
     </task>
     <task id="LOCAL-00001" summary="add base logic">
       <option name="closed" value="true" />
@@ -194,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728327640876</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1728375259663</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728375259663</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,11 +222,11 @@
     <MESSAGE value="create test" />
     <MESSAGE value="add lifetimes" />
     <MESSAGE value="add tests" />
-    <MESSAGE value="refactoring" />
     <MESSAGE value="refactoring dependecyCollector" />
     <MESSAGE value="add extansion methods" />
     <MESSAGE value="add extancions" />
     <MESSAGE value="change injectAttribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="change injectAttribute" />
+    <MESSAGE value="refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
   </component>
 </project>
