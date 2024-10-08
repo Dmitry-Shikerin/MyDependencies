@@ -22,5 +22,11 @@ namespace MyDependencies.Test
             _testClass3 = testClass3 ?? throw new ArgumentNullException();
             Debug.Log(_testClass3.Value.Value.GetType().Name);
         }
+
+        [Inject]
+        private void Construct2(ITestClass testClass)
+        {
+            _testClass = testClass ?? throw new ArgumentNullException();
+        }
     }
 }

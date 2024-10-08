@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="">
+    <list default="true" id="7811e86b-7750-4faa-a075-1ebe71d948af" name="Changes" comment="refactoring dependency collector">
+      <change afterPath="$PROJECT_DIR$/Assets/MyDependencies/Test/Tests/Categories.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/MyDependencies/Test/Tests/Categories/TestCategory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/MyDependencies/Test/Tests/Categories/TestCategory.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MyDependencies/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DependencyCollector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DependencyCollector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DiContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Containers/DiContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Test/Bootstrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Test/Bootstrapper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MyDependencies/Test/TestInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MyDependencies/Test/TestInstaller.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +26,10 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/MyDependencies/Containers/DependencyCollector.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/MyDependencies/Containers/DiContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/MyDependencies/Containers/DiContainer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Programs/UnityProjects/CodeSnippets/MyDependencies/Assets/MyDependencies/Test/TestInstaller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/08/8d7ac619/Func`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/da6a1787df247a0274ec8fc4840f41df092ee13874f55f87a9db568acab1bd2/System.Reflection.cs" root0="SKIP_HIGHLIGHTING" />
@@ -114,7 +121,7 @@
       <workItem from="1728323785393" duration="4251000" />
       <workItem from="1728328148892" duration="2141000" />
       <workItem from="1728375154579" duration="2794000" />
-      <workItem from="1728402753828" duration="1446000" />
+      <workItem from="1728402753828" duration="4679000" />
     </task>
     <task id="LOCAL-00001" summary="add base logic">
       <option name="closed" value="true" />
@@ -212,7 +219,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728376272993</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactoring dependency collector">
+      <option name="closed" value="true" />
+      <created>1728404238268</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1728404238268</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactoring dependency collector">
+      <option name="closed" value="true" />
+      <created>1728404885103</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728404885103</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactoring dependency collector">
+      <option name="closed" value="true" />
+      <created>1728405162833</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1728405162833</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +269,7 @@
     <MESSAGE value="change injectAttribute" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="add AsMDef" />
-    <option name="LAST_COMMIT_MESSAGE" value="add AsMDef" />
+    <MESSAGE value="refactoring dependency collector" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring dependency collector" />
   </component>
 </project>
