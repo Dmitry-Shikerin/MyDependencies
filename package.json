@@ -13,6 +13,12 @@
  "keywords": [
     "DiContainer"
   ],
+  "samples": [
+    {
+      "displayName": "MyDependenciesExample",
+      "description": "This is plugin DiContainer(IoC Container)",
+      "path": "Example~/MyDependenciesExample"
+    }],
   "author": {
     "name": "Shikerin-Dmitry",
     "email": "unity@example.com",
