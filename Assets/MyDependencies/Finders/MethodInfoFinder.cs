@@ -3,11 +3,12 @@ using System.Linq;
 using System.Reflection;
 using MyDependencies.Attributes;
 using MyDependencies.Containers;
+using MyDependencies.Exceptions;
 using MyDependencies.Utils;
 
 namespace MyDependencies.Finders
 {
-    public class MethodInfoFinder : FinderBase
+    public class MethodInfoFinder
     {
         public MethodInfo Get(Type type)
         {
@@ -25,5 +26,14 @@ namespace MyDependencies.Finders
 
             return Get(methods.ToArray());
         }
+        
+        private T Get<T>(T[] info)
+            where T : class =>
+            info.Length switch
+            {
+                > 1 => throw new ConstructAttributeAutOfRangeException(),
+                1 => info.First(),
+                _ => null,
+            };
     }
 }
