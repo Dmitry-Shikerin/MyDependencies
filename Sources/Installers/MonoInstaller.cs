@@ -1,7 +1,7 @@
-using MyDependencies.Containers;
+using MyDependencies.Sources.Containers;
 using UnityEngine;
 
-namespace MyDependencies.Installers
+namespace MyDependencies.Sources.Installers
 {
     public abstract class MonoInstaller : MonoBehaviour
     {

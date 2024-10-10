@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using MyDependencies.Containers;
-using MyDependencies.Installers;
+using MyDependencies.Sources.Containers;
+using MyDependencies.Sources.Installers;
 using UnityEngine;
 
-namespace MyDependencies.Contexts
+namespace MyDependencies.Sources.Contexts
 {
     [DefaultExecutionOrder(-9000)]
     public class SceneContext : MonoBehaviour

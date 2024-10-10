@@ -1,4 +1,4 @@
-namespace MyDependencies.Lifetimes
+namespace MyDependencies.Sources.Lifetimes
 {
     public enum LifeTime
     {

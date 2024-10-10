@@ -1,4 +1,4 @@
-namespace MyDependencies.Test
+namespace MyDependencies.Sources.Test
 {
     public interface ITestClass
     {

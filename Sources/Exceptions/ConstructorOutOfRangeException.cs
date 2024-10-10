@@ -1,6 +1,6 @@
 using System;
 
-namespace MyDependencies.Exceptions
+namespace MyDependencies.Sources.Exceptions
 {
     public class ConstructorOutOfRangeException : ArgumentOutOfRangeException
     {

@@ -1,10 +1,10 @@
-using MyDependencies.Containers;
-using MyDependencies.Containers.Extensions;
-using MyDependencies.Installers;
-using MyDependencies.Lifetimes;
-using MyDependencies.Test.Generic;
+using MyDependencies.Sources.Containers;
+using MyDependencies.Sources.Containers.Extensions;
+using MyDependencies.Sources.Installers;
+using MyDependencies.Sources.Lifetimes;
+using MyDependencies.Sources.Test.Generic;
 
-namespace MyDependencies.Test
+namespace MyDependencies.Sources.Test
 {
     public class TestInstaller : MonoInstaller
     {

@@ -1,9 +1,9 @@
 using System;
-using MyDependencies.Attributes;
-using MyDependencies.Test.Generic;
+using MyDependencies.Sources.Attributes;
+using MyDependencies.Sources.Test.Generic;
 using UnityEngine;
 
-namespace MyDependencies.Test
+namespace MyDependencies.Sources.Test
 {
     public class Bootstrapper : MonoBehaviour
     {

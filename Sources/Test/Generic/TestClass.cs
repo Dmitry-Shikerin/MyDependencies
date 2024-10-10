@@ -1,6 +1,6 @@
 using System;
 
-namespace MyDependencies.Test.Generic
+namespace MyDependencies.Sources.Test.Generic
 {
     public class TestClass<T> : ITestClass<T>
     {

@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using MyDependencies.Containers;
-using MyDependencies.Exceptions;
+using MyDependencies.Sources.Containers;
+using MyDependencies.Sources.Exceptions;
 
-namespace MyDependencies.Finders
+namespace MyDependencies.Sources.Finders
 {
     public class ConstructorInfoFinder
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MyDependencies.Containers
+namespace MyDependencies.Sources.Containers
 {
     public class DependencyContainer
     {

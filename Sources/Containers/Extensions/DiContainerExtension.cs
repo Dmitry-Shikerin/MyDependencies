@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using MyDependencies.Lifetimes;
+using MyDependencies.Sources.Lifetimes;
 using UnityEngine;
 
-namespace MyDependencies.Containers.Extensions
+namespace MyDependencies.Sources.Containers.Extensions
 {
     public static class DiContainerExtension
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MyDependencies.Test
+namespace MyDependencies.Sources.Test
 {
     public class ContextCollector : MonoBehaviour
     {

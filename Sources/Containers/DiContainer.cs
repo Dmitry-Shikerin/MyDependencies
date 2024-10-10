@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using MyDependencies.Finders;
-using MyDependencies.Lifetimes;
+using MyDependencies.Sources.Finders;
+using MyDependencies.Sources.Lifetimes;
 using UnityEngine;
 
-namespace MyDependencies.Containers
+namespace MyDependencies.Sources.Containers
 {
     public class DiContainer
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MyDependencies.Lifetimes;
+using MyDependencies.Sources.Lifetimes;
 
-namespace MyDependencies.Containers
+namespace MyDependencies.Sources.Containers
 {
     public class DependencyCollector
     {

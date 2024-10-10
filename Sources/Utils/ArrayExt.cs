@@ -1,6 +1,6 @@
 using System;
 
-namespace MyDependencies.Utils
+namespace MyDependencies.Sources.Utils
 {
     public static class ArrayExt
     {

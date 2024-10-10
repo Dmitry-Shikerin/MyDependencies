@@ -1,7 +1,7 @@
 using System;
-using MyDependencies.Lifetimes;
+using MyDependencies.Sources.Lifetimes;
 
-namespace MyDependencies.Containers
+namespace MyDependencies.Sources.Containers
 {
     public struct DependencyInfo
     {

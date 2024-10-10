@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace MyDependencies.Attributes
+namespace MyDependencies.Sources.Attributes
 {
     [MeansImplicitUse(ImplicitUseKindFlags.Assign)]
     [AttributeUsage(AttributeTargets.Method)]

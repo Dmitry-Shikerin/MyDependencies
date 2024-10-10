@@ -1,9 +1,9 @@
 using System.Collections;
-using MyDependencies.Test.Tests.Categories;
+using MyDependencies.Sources.Test.Tests.Categories;
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace MyDependencies.Test.Tests
+namespace MyDependencies.Sources.Test.Tests
 {
     public class DependencyTest
     {
