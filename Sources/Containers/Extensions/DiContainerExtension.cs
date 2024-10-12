@@ -10,6 +10,10 @@ namespace MyDependencies.Sources.Containers.Extensions
         public static void Bind<TInt, TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class, TInt =>
             container.Register(typeof(TImpl), lifeTime, new[] { typeof(TInt), });
+        
+        public static void Bind<TInt, TImpl>(this DiContainer container, TImpl instance, LifeTime lifeTime = LifeTime.Single)
+            where TImpl : class, TInt =>
+            container.Register(instance, lifeTime, new[] { typeof(TInt), });
 
         public static void Bind<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class =>

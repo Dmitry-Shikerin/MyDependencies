@@ -14,6 +14,8 @@ namespace MyDependencies.Sources.Contexts
         private ProjectContext _projectContext;
         private DiContainer _container;
         
+        public DiContainer Container => _container;
+        
         private void Awake()
         {
             _projectContext = FindObjectOfType<ProjectContext>() ?? 
