@@ -19,10 +19,15 @@ namespace MyDependencies.Sources.Containers.Extensions
             where TImpl : class =>
             container.Register(typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces());
         
-        public static void BindInterfacesAndSelfTo<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
+        public static void BindInterfacesAndSelf<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class =>
             container.Register(
                 typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces().Append(typeof(TImpl)).ToArray());
+        
+        public static void BindInterfacesAndSelf<TImpl>(this DiContainer container, TImpl instance, LifeTime lifeTime = LifeTime.Single)
+            where TImpl : class =>
+            container.Register(
+                instance, lifeTime, typeof(TImpl).GetInterfaces().Append(typeof(TImpl)).ToArray());
         
         public static void Bind<TImpl>(this DiContainer container, TImpl instance)
             where TImpl : class =>
