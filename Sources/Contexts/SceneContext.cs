@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MyDependencies.Sources.Containers;
+using MyDependencies.Sources.Containers.Extensions;
 using MyDependencies.Sources.Installers;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace MyDependencies.Sources.Contexts
             _projectContext = FindObjectOfType<ProjectContext>() ?? 
                               Instantiate(Resources.Load<ProjectContext>("ProjectContext"));
             _container = new DiContainer(_projectContext.Container);
+            
+            _container.Bind(_container);
             
             foreach (MonoInstaller installer in _installers)
                 installer.InstallBindings(_container);
