@@ -7,19 +7,19 @@ namespace MyDependencies.Sources.Containers.Extensions
 {
     public static class DiContainerExtension
     {
-        public static void Bind<TInt, TImpl>(this DiContainer container, LifeTime lifeTime)
+        public static void Bind<TInt, TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class, TInt =>
             container.Register(typeof(TImpl), lifeTime, new[] { typeof(TInt), });
 
-        public static void Bind<TImpl>(this DiContainer container, LifeTime lifeTime)
+        public static void Bind<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class =>
             container.Register(typeof(TImpl), lifeTime, new[] { typeof(TImpl), });
 
-        public static void BindInterfaces<TImpl>(this DiContainer container, LifeTime lifeTime)
+        public static void BindInterfaces<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class =>
             container.Register(typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces());
         
-        public static void BindInterfacesAndSelfTo<TImpl>(this DiContainer container, LifeTime lifeTime)
+        public static void BindInterfacesAndSelfTo<TImpl>(this DiContainer container, LifeTime lifeTime = LifeTime.Single)
             where TImpl : class =>
             container.Register(
                 typeof(TImpl), lifeTime, typeof(TImpl).GetInterfaces().Append(typeof(TImpl)).ToArray());

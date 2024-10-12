@@ -5,6 +5,7 @@ using MyDependencies.Sources.Attributes;
 using MyDependencies.Sources.Containers;
 using MyDependencies.Sources.Exceptions;
 using MyDependencies.Sources.Utils;
+using UnityEngine;
 
 namespace MyDependencies.Sources.Finders
 {
@@ -17,11 +18,15 @@ namespace MyDependencies.Sources.Finders
 
             foreach (MethodInfo info in infos)
             {
+                //Todo: возможно стоит использовать info.GetCustomAttributes<InjectAttribute>()
                 foreach (Attribute attribute in info.GetCustomAttributes())
                 {
                     if (attribute is InjectAttribute)
+                    {
                         ArrayExt.Add(ref methods, info);
+                    }
                 }
+
             }
 
             return Get(methods.ToArray());

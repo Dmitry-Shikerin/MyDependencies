@@ -20,13 +20,20 @@ namespace MyDependencies.Sources.Test
             _testClass = testClass ?? throw new ArgumentNullException();
             _testClass2 = testClass2 ?? throw new ArgumentNullException();
             _testClass3 = testClass3 ?? throw new ArgumentNullException();
+            // int count = 2;
+            Test();
             Debug.Log(_testClass3.Value.Value.GetType().Name);
         }
 
-        [Inject]
-        private void Construct2(ITestClass testClass)
+        private void Test()
         {
-            _testClass = testClass ?? throw new ArgumentNullException();
+            
         }
+        //
+        // [Inject]
+        // private void Construct2(ITestClass testClass)
+        // {
+        //     _testClass = testClass ?? throw new ArgumentNullException();
+        // }
     }
 }
