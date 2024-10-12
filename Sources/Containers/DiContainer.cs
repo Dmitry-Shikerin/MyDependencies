@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using MyDependencies.Sources.Exceptions;
 using MyDependencies.Sources.Finders;
 using MyDependencies.Sources.Lifetimes;
 using UnityEngine;
@@ -9,9 +10,9 @@ namespace MyDependencies.Sources.Containers
 {
     public class DiContainer
     {
-        public static readonly BindingFlags Flags = 
+        public static readonly BindingFlags Flags =
             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-        
+
         private readonly DiContainer _parentContainer;
         private readonly MethodInfoFinder _methodInfoFinder = new();
         private readonly ConstructorInfoFinder _constructorInfoFinder = new();
@@ -24,7 +25,7 @@ namespace MyDependencies.Sources.Containers
 
         public void Register(Type implType, LifeTime lifeTime, params Type[] interfacesTypes) =>
             _collector.Register(implType, lifeTime, interfacesTypes);
-        
+
         public void Register(object instance, LifeTime lifeTime, params Type[] interfacesTypes) =>
             _collector.Register(instance, lifeTime, interfacesTypes);
 
@@ -52,7 +53,7 @@ namespace MyDependencies.Sources.Containers
             if (_parentContainer != null)
                 return _parentContainer.GetDependency(interfaceType);
 
-            throw new Exception($"Type {interfaceType.FullName} not registered");
+            throw new NotRegistrationException(interfaceType.Name);
         }
 
         private object[] GetDependencies(Type[] types)
@@ -79,11 +80,19 @@ namespace MyDependencies.Sources.Containers
             if (constructor == null)
                 return Activator.CreateInstance(implType);
 
-            ParameterInfo[] parameters = constructor.GetParameters();
-            Type[] dependenciesTypes = GetDependencyTypes(parameters);
-            object[] dependencies = GetDependencies(dependenciesTypes);
-
-            return Activator.CreateInstance(implType, dependencies);
+            try
+            {
+                ParameterInfo[] parameters = constructor.GetParameters();
+                Type[] dependenciesTypes = GetDependencyTypes(parameters);
+                object[] dependencies = GetDependencies(dependenciesTypes);
+                
+                return Activator.CreateInstance(implType, dependencies);
+            }
+            catch (NotRegistrationException exception)
+            {
+                throw new NotRegistrationException(
+                    $"Type {exception.Message} not registered in class {implType.Name}");
+            }
         }
 
         private Type[] GetDependencyTypes(ParameterInfo[] parameters)
