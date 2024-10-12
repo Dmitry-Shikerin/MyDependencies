@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyDependencies.Sources.Lifetimes;
+using UnityEngine;
 
 namespace MyDependencies.Sources.Containers
 {
@@ -17,8 +18,8 @@ namespace MyDependencies.Sources.Containers
         {
             AddImplRegistration(implType);
             RegisterInterfaces(implType, lifeTime, interfacesTypes);
-        }        
-        
+        }
+
         public void Register(object instance, LifeTime lifeTime, params Type[] interfacesTypes)
         {
             Type implType = instance.GetType();
@@ -39,7 +40,7 @@ namespace MyDependencies.Sources.Containers
 
             Type implType = GetImplType(interfaceType);
             object dependency;
-            
+
             if (_implSingleInstances.Contains(implType))
             {
                 dependency = _dependencies.Values
@@ -48,24 +49,24 @@ namespace MyDependencies.Sources.Containers
                 {
                     Dependency = dependency,
                 };
-                
+
                 return dependency;
             }
-            
+
             dependency = createFunc.Invoke(interfaceType);
             AddImpl(interfaceType, dependency);
-            
+
             return dependency;
         }
 
         private void RegisterInterfaces(
-            Type implType, 
-            LifeTime lifeTime, 
-            Type[] interfacesTypes, 
-            Action<Type, object> add = null, 
+            Type implType,
+            LifeTime lifeTime,
+            Type[] interfacesTypes,
+            Action<Type, object> add = null,
             object instance = null)
         {
-            foreach (Type type in interfacesTypes)
+            foreach (Type type in GetInterfacesTypes(implType, interfacesTypes))
             {
                 if (_mapping.ContainsKey(type))
                     throw new Exception($"Type {type} already registered");
@@ -80,18 +81,51 @@ namespace MyDependencies.Sources.Containers
             }
         }
 
+        private Type[] GetInterfacesTypes(Type implType, Type[] types)
+        {
+            List<Type> result = new List<Type>();
+
+            foreach (var iInterface in types)
+            {
+                if (iInterface == implType)
+                {
+                    result.Add(implType);
+
+                    continue;
+                }
+
+                //TODO порефакторить
+                bool hasImplemented = false;
+                types
+                    .Except(new[] { iInterface })
+                    .ToList()
+                    .ForEach(type => type.GetInterfaces().ToList().ForEach(nextType =>
+                    {
+                        if (nextType == iInterface)
+                            hasImplemented = true;
+                    }));
+
+                if (hasImplemented)
+                    continue;
+
+                result.Add(iInterface);
+            }
+
+            return result.ToArray();
+        }
+
         private void AddImplRegistration(Type implType)
         {
             if (_implRegisteredTypes.Contains(implType))
                 throw new Exception($"Type {implType} already registered");
-            
+
             _implRegisteredTypes.Push(implType);
         }
 
         private void AddImpl(Type type, object dependency)
         {
             _dependencies[type] = new DependencyContainer();
-            
+
             Action action = _mapping[type].LifeTime switch
             {
                 LifeTime.Single => () =>
@@ -104,7 +138,7 @@ namespace MyDependencies.Sources.Containers
                 LifeTime.Scoped => throw new NotImplementedException(),
                 _ => null
             };
-            
+
             action?.Invoke();
         }
 

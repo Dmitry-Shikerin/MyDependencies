@@ -1,6 +1,6 @@
 {
   "name": "com.hellgames.my-dependencies",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "displayName": "My Dependencies",
   "description": "This is plugin DiContainer(IoC Container)",
   "unity": "2019.1",

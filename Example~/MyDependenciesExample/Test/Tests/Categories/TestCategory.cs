@@ -1,4 +1,4 @@
-namespace MyDependencies.Sources.Test.Tests.Categories
+namespace MyDependencies.Example.MyDependenciesExample.Test.Tests.Categories
 {
     public class TestCategory
     {

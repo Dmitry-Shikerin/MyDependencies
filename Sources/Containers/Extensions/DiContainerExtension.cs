@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MyDependencies.Sources.Lifetimes;
 using UnityEngine;
+using Object = System.Object;
 
 namespace MyDependencies.Sources.Containers.Extensions
 {
