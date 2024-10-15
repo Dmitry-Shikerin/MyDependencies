@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _installers:
-  - {fileID: 64755648}
+  - {fileID: 0}
   _injectedObjects:
   - {fileID: 1054831655}
 --- !u!4 &214260380

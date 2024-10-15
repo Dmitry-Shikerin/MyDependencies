@@ -1,8 +1,9 @@
 ﻿using System;
+using MyDependencies.Example.MyDependenciesExample.Test;
 using MyDependencies.Sources.Attributes;
 using UnityEngine;
 
-namespace MyDependencies.Example.MyDependenciesExample.Test.Tests.TestComponents.InjectAttributeFindTest
+namespace MyDependencies.Example.MyDependenciesExample.Tests.TestsFolder.TestComponents.InjectAttributeFindTest
 {
     public class InjectAttributeFinderTestBootstrapper : MonoBehaviour
     {
