@@ -29,7 +29,8 @@ namespace MyDependencies.Sources.Containers
         public void Register(object instance, LifeTime lifeTime, params Type[] interfacesTypes) =>
             _collector.Register(instance, lifeTime, interfacesTypes);
 
-        public void Inject(MonoBehaviour injected)
+        public void Inject<T>(T injected)
+            where T : class
         {
             MethodInfo methodInfo = _methodInfoFinder.Get(injected.GetType());
 
